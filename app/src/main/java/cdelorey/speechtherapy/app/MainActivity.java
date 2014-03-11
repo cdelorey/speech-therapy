@@ -1,5 +1,6 @@
 package cdelorey.speechtherapy.app;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -11,7 +12,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.util.Log;
+import android.content.SharedPreferences.Editor;
 
 
 public class MainActivity extends ActionBarActivity implements TabListener,
@@ -25,7 +26,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     // State ---------------------------------------------------------------------------------------
     private double timer;
 
-    // Initialization Methods ----------------------------------------------------------------------
+    // Lifecycle Methods ---------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +62,23 @@ public class MainActivity extends ActionBarActivity implements TabListener,
             }
         });
 
-        // Get last timer value or set timer to 1.0 if first use
-        SharedPreferences prefs = getSharedPreferences("state", 0);
-        timer = prefs.getFloat("timer", 1.0f);
+        // Get last timer value or set timer to 0 if first use
+        loadTimerFromPreferences();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveTimerToPreferences();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadTimerFromPreferences();
+    }
+
+    // Options Methods -----------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -114,7 +127,6 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     public void onDialogPositiveClick(DialogFragment dialog) {
         SetTimerDialogFragment fragment = (SetTimerDialogFragment) dialog;
         timer = fragment.getTimerValue();
-        Log.e(Constants.LOG, "Setting Timer Value");
     }
 
 
@@ -122,5 +134,16 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     private void showTimerDialog() {
         SetTimerDialogFragment dialog = new SetTimerDialogFragment();
         dialog.show(getSupportFragmentManager(), "SetTimerDialogFragment");
+    }
+
+    private void loadTimerFromPreferences() {
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        timer = Double.longBitsToDouble(prefs.getLong("timer", 0));
+    }
+
+    private void saveTimerToPreferences() {
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        Editor editor = prefs.edit();
+        editor.putLong("timer", Double.doubleToRawLongBits(timer));
     }
 }

@@ -1,4 +1,3 @@
-* set seekbar progress attribute to saved timer level from sharedPreferences
 * implement single button screen
 * implement multiple buttons screen
 * implement single bar screen
@@ -9,4 +8,5 @@
 *DONE* make current value label change with seekbar
 *DONE* convert current value from int to double (10ms increments)
 *DONE* set timer variable value to value of seekbar when user presses ok in timer dialog
-* save timer value to shared preferences in onPause and retrieve in onRestore?
+*DONE* save timer value to shared preferences in onPause and retrieve in onRestore?
+* set seekbar progress attribute to saved timer level from sharedPreferences
