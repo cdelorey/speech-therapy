@@ -7,28 +7,19 @@ import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.content.Context;
-import android.view.ViewGroup;
 import android.widget.SeekBar;
-import android.widget.Toast;
 import android.widget.TextView;
 
 /**
  * Dialog fragment that prompts user to set the timer.
  */
 public class SetTimerDialogFragment extends DialogFragment {
-    private Context context;
     private TextView timerValue;
-
-    public SetTimerDialogFragment(Context context) {
-        this.context = context;
-    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // get dialog layout
-        LayoutInflater inflater = (LayoutInflater)
-                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.timer_dialog, null);
 
         // setup seekbar

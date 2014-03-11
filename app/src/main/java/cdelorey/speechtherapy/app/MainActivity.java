@@ -8,11 +8,8 @@ import android.support.v7.app.ActionBar.Tab;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 
 
 public class MainActivity extends ActionBarActivity implements TabListener {
@@ -105,7 +102,7 @@ public class MainActivity extends ActionBarActivity implements TabListener {
     }
 
     private void showTimerDialog() {
-        SetTimerDialogFragment dialog = new SetTimerDialogFragment(this);
+        SetTimerDialogFragment dialog = new SetTimerDialogFragment();
         dialog.show(getSupportFragmentManager(), "SetTimerDialogFragment");
     }
 }
