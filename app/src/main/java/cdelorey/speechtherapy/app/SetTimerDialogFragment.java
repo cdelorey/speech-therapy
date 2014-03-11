@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 /**
  * Dialog fragment that prompts user to set the timer.
  */
 public class SetTimerDialogFragment extends DialogFragment {
+    private static final int SEEKBAR_MAX = 200;
     private TextView timerValue;
 
     @Override
@@ -25,10 +28,11 @@ public class SetTimerDialogFragment extends DialogFragment {
         // setup seekbar
         SeekBar seekBar = (SeekBar) layout.findViewById(R.id.timer_dialog_seekbar);
         timerValue = (TextView) layout.findViewById(R.id.current_value);
+        seekBar.setMax(SEEKBAR_MAX);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                timerValue.setText("Timer length: " + progress);
+                setSeekbarLabel(progress);
             }
 
             @Override
@@ -58,4 +62,14 @@ public class SetTimerDialogFragment extends DialogFragment {
                 });
         return builder.create();
     }
+
+    private void setSeekbarLabel(int progress) {
+        // Seekbars store progress as an int, so this value must be converted
+        // to a float to display timer values in terms of milliseconds.
+        double result = progress / 100.0;
+        timerValue.setText("Timer length: "
+                + new DecimalFormat("0.00").format(result)
+                + " seconds");
+    }
+
 }
