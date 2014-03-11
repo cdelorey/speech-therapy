@@ -1,0 +1,10 @@
+* make current value label change with seekbar
+* set seekbar progress attribute to saved timer level from sharedPreferences
+* set timer variable value to value of seekbar when user presses ok in timer dialog
+* implement single button screen
+* implement multiple buttons screen
+* implement single bar screen
+
+03/11/14
+--------
+* add labels to seekbar
