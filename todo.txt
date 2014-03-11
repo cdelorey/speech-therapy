@@ -8,4 +8,5 @@
 *DONE* add labels to seekbar
 *DONE* make current value label change with seekbar
 *DONE* convert current value from int to double (10ms increments)
-* set timer variable value to value of seekbar when user presses ok in timer dialog
+*DONE* set timer variable value to value of seekbar when user presses ok in timer dialog
+* save timer value to shared preferences in onPause and retrieve in onRestore?

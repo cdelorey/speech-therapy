@@ -9,15 +9,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
+import android.app.Activity;
 import java.text.DecimalFormat;
 
 /**
  * Dialog fragment that prompts user to set the timer.
  */
 public class SetTimerDialogFragment extends DialogFragment {
+    // Constants -----------------------------------------------------------------------------------
     private static final int SEEKBAR_MAX = 200;
-    private TextView timerValue;
+
+    // State ---------------------------------------------------------------------------------------
+    private TextView timerLabel;
+    private double timerValue;
+    private TimerDialogListener listener;
+
+    // Interfaces ----------------------------------------------------------------------------------
+    /* The activity that creates an instance of this dialog fragment must
+     * implement this interface in order to receive event callbacks. */
+    public interface TimerDialogListener {
+        public void onDialogPositiveClick(DialogFragment dialog);
+    }
+
+    // Getters -------------------------------------------------------------------------------------
+    public double getTimerValue() {
+        return timerValue;
+    }
+
+    // Initialization Methods ----------------------------------------------------------------------
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            listener = (TimerDialogListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement TimerDialogListener");
+        }
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,12 +56,12 @@ public class SetTimerDialogFragment extends DialogFragment {
 
         // setup seekbar
         SeekBar seekBar = (SeekBar) layout.findViewById(R.id.timer_dialog_seekbar);
-        timerValue = (TextView) layout.findViewById(R.id.current_value);
+        timerLabel = (TextView) layout.findViewById(R.id.current_value);
         seekBar.setMax(SEEKBAR_MAX);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                setSeekbarLabel(progress);
+                setSeekbarLabel(convertProgressIntToDouble(progress));
             }
 
             @Override
@@ -41,6 +70,8 @@ public class SetTimerDialogFragment extends DialogFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                int progress = seekBar.getProgress();
+                timerValue = convertProgressIntToDouble(progress);
             }
         });
 
@@ -52,23 +83,30 @@ public class SetTimerDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // set timer preference
+                        listener.onDialogPositiveClick(SetTimerDialogFragment.this);
                     }
                 })
                 .setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        SetTimerDialogFragment.this.getDialog().cancel();
                     }
                 });
         return builder.create();
     }
 
-    private void setSeekbarLabel(int progress) {
+
+    // Private Methods -----------------------------------------------------------------------------
+    private double convertProgressIntToDouble(int progress) {
         // Seekbars store progress as an int, so this value must be converted
         // to a float to display timer values in terms of milliseconds.
         double result = progress / 100.0;
-        timerValue.setText("Timer length: "
-                + new DecimalFormat("0.00").format(result)
+        return result;
+    }
+
+    private void setSeekbarLabel(double progress) {
+        timerLabel.setText("Timer length: "
+                + new DecimalFormat("0.00").format(progress)
                 + " seconds");
     }
 

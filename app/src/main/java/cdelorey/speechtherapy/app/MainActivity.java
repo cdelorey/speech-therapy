@@ -1,6 +1,7 @@
 package cdelorey.speechtherapy.app;
 
 import android.content.SharedPreferences;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.TabListener;
@@ -10,18 +11,21 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.util.Log;
 
 
-public class MainActivity extends ActionBarActivity implements TabListener {
-    // ui
+public class MainActivity extends ActionBarActivity implements TabListener,
+        SetTimerDialogFragment.TimerDialogListener {
+    // UI ------------------------------------------------------------------------------------------
     private ViewPager viewPager;
     private TabsPagerAdapter adapter;
     private ActionBar actionBar;
     private String[] tabs = { "Buttons", "Button", "Bar" };
 
-    // state
-    private float timer;
+    // State ---------------------------------------------------------------------------------------
+    private double timer;
 
+    // Initialization Methods ----------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +89,8 @@ public class MainActivity extends ActionBarActivity implements TabListener {
         }
     }
 
+
+    // Tab Listener Methods ------------------------------------------------------------------------
     @Override
     public void onTabReselected(Tab tab, FragmentTransaction ft) {
 
@@ -101,6 +107,18 @@ public class MainActivity extends ActionBarActivity implements TabListener {
 
     }
 
+
+    // TimerDialogListener Methods -----------------------------------------------------------------
+    /* onDialogPositiveClick
+     * Set timer to value specified by user in SetTimerDialog */
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        SetTimerDialogFragment fragment = (SetTimerDialogFragment) dialog;
+        timer = fragment.getTimerValue();
+        Log.e(Constants.LOG, "Setting Timer Value");
+    }
+
+
+    // Private Methods -----------------------------------------------------------------------------
     private void showTimerDialog() {
         SetTimerDialogFragment dialog = new SetTimerDialogFragment();
         dialog.show(getSupportFragmentManager(), "SetTimerDialogFragment");
