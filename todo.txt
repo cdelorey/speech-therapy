@@ -9,4 +9,4 @@
 *DONE* convert current value from int to double (10ms increments)
 *DONE* set timer variable value to value of seekbar when user presses ok in timer dialog
 *DONE* save timer value to shared preferences in onPause and retrieve in onRestore?
-* set seekbar progress attribute to saved timer level from sharedPreferences
+*DONE* set seekbar progress attribute to saved timer level from sharedPreferences

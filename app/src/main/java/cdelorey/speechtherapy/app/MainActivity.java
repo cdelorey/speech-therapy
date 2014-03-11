@@ -132,7 +132,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
     // Private Methods -----------------------------------------------------------------------------
     private void showTimerDialog() {
-        SetTimerDialogFragment dialog = new SetTimerDialogFragment();
+        SetTimerDialogFragment dialog = new SetTimerDialogFragment(timer);
         dialog.show(getSupportFragmentManager(), "SetTimerDialogFragment");
     }
 
@@ -145,5 +145,6 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putLong("timer", Double.doubleToRawLongBits(timer));
+        editor.commit();
     }
 }

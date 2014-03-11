@@ -37,6 +37,10 @@ public class SetTimerDialogFragment extends DialogFragment {
     }
 
     // Initialization Methods ----------------------------------------------------------------------
+    public SetTimerDialogFragment(double timer) {
+        timerValue = timer;
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -57,7 +61,9 @@ public class SetTimerDialogFragment extends DialogFragment {
         // setup seekbar
         SeekBar seekBar = (SeekBar) layout.findViewById(R.id.timer_dialog_seekbar);
         timerLabel = (TextView) layout.findViewById(R.id.current_value);
+        setSeekbarLabel(timerValue);
         seekBar.setMax(SEEKBAR_MAX);
+        seekBar.setProgress(convertProgressDoubleToInt(timerValue));
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -101,6 +107,11 @@ public class SetTimerDialogFragment extends DialogFragment {
         // Seekbars store progress as an int, so this value must be converted
         // to a float to display timer values in terms of milliseconds.
         double result = progress / 100.0;
+        return result;
+    }
+
+    private int convertProgressDoubleToInt(double progress) {
+        int result = (int) (progress * 100);
         return result;
     }
 
