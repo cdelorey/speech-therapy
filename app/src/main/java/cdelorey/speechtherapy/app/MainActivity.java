@@ -1,5 +1,6 @@
 package cdelorey.speechtherapy.app;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.TabListener;
@@ -13,17 +14,21 @@ import android.view.MenuItem;
 
 
 public class MainActivity extends ActionBarActivity implements TabListener {
+    // ui
     private ViewPager viewPager;
     private TabsPagerAdapter adapter;
     private ActionBar actionBar;
     private String[] tabs = { "Buttons", "Button", "Bar" };
+
+    // state
+    private float timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialization
+        // UI Initialization
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getSupportActionBar();
         adapter = new TabsPagerAdapter(getSupportFragmentManager());
@@ -52,6 +57,10 @@ public class MainActivity extends ActionBarActivity implements TabListener {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+
+        // Get last timer value or set timer to 1.0 if first use
+        SharedPreferences prefs = getSharedPreferences("state", 0);
+        timer = prefs.getFloat("timer", 1.0f);
     }
 
     @Override
@@ -66,11 +75,16 @@ public class MainActivity extends ActionBarActivity implements TabListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch(item.getItemId()) {
+            case R.id.action_timer:
+                SetTimerDialogFragment dialog = new SetTimerDialogFragment();
+                dialog.show(getSupportFragmentManager(), "SetTimerDialogFragment");
+                return true;
+            case R.id.action_help:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
