@@ -3,6 +3,8 @@ package cdelorey.speechtherapy.app;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
+import cdelorey.speechtherapy.app.Constants;
 
 public class TabsPagerAdapter  extends FragmentPagerAdapter {
 
