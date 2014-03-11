@@ -1,4 +1,4 @@
-* make current value label change with seekbar
+* convert current value from int to float (10ms increments)
 * set seekbar progress attribute to saved timer level from sharedPreferences
 * set timer variable value to value of seekbar when user presses ok in timer dialog
 * implement single button screen
@@ -7,4 +7,5 @@
 
 03/11/14
 --------
-* add labels to seekbar
+*DONE* add labels to seekbar
+* make current value label change with seekbar
