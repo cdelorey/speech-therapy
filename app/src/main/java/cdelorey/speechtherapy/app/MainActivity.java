@@ -72,6 +72,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     public void onPause() {
         super.onPause();
         saveTimerToPreferences();
+        clearAllTimers();
     }
 
     @Override
@@ -148,5 +149,12 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         Editor editor = prefs.edit();
         editor.putLong("timer", Double.doubleToRawLongBits(timer));
         editor.commit();
+    }
+
+    private void clearAllTimers() {
+        // timers must be added here individually.
+        // TODO: get all timers from activity somehow and clear them in a for loop
+        TimerButton button = (TimerButton) findViewById(R.id.single_button);
+        button.clearTimer();
     }
 }
