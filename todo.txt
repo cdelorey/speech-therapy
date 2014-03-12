@@ -1,3 +1,6 @@
+* clear all timers in onPause
+* set timerLength for all timers when user changes value
+* add "too slow" and "done" text to timerButtons
 * implement single button screen
 * implement multiple buttons screen
 * implement single bar screen
@@ -14,3 +17,4 @@
 03/12/14
 --------
 *DONE* add timerButton class
+*DONE* add timers to TimerButton
