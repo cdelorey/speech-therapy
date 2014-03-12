@@ -28,6 +28,7 @@ public class TimerButton extends Button {
             // button has been held long enough
             timerIsRunning = false;
             TimerButton.this.setBackgroundColor(Color.BLUE);
+            TimerButton.this.setText("DONE");
         }
     };
 
@@ -35,15 +36,16 @@ public class TimerButton extends Button {
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
         super(context);
-        setupListener();
+        setup();
     }
 
     public TimerButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setupListener();
+        setup();
     }
 
-    // Setters -------------------------------------------------------------------------------------
+
+    // Public Methods ------------------------------------------------------------------------------
     public void setTimerLength(int length) {
         timerLength = length;
     }
@@ -52,7 +54,14 @@ public class TimerButton extends Button {
         handler.removeCallbacks(timer);
     }
 
+
     // Private Methods -----------------------------------------------------------------------------
+    private void setup() {
+        setupListener();
+        this.setText("");
+        this.setBackgroundColor(Color.GREEN);
+    }
+
     private void setupListener() {
         this.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -62,11 +71,13 @@ public class TimerButton extends Button {
                     handler.postDelayed(timer, timerLength);
                     timerIsRunning = true;
                     TimerButton.this.setBackgroundColor(Color.GREEN);
+                    TimerButton.this.setText("");
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     // too slow
                     if(timerIsRunning) {
                         clearTimer();
                         TimerButton.this.setBackgroundColor(Color.RED);
+                        TimerButton.this.setText("TOO FAST");
                     }
                 }
                 return false;
