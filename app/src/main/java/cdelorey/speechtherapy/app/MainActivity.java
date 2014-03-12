@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.SharedPreferences.Editor;
 
-
+/**
+ *
+ */
 public class MainActivity extends ActionBarActivity implements TabListener,
         SetTimerDialogFragment.TimerDialogListener {
     // UI ------------------------------------------------------------------------------------------

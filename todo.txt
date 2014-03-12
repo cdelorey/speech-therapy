@@ -10,3 +10,7 @@
 *DONE* set timer variable value to value of seekbar when user presses ok in timer dialog
 *DONE* save timer value to shared preferences in onPause and retrieve in onRestore?
 *DONE* set seekbar progress attribute to saved timer level from sharedPreferences
+
+03/12/14
+--------
+*DONE* add timerButton class
