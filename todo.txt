@@ -18,4 +18,4 @@
 *DONE* add timerButton class
 *DONE* add timers to TimerButton
 *DONE* add "too fast" and "done" text to timerButtons
-* reset timer button to green with no text
+*DONE* reset timer button to green with no text

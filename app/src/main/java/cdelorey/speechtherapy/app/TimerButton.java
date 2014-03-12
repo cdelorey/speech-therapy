@@ -13,10 +13,6 @@ import android.os.Handler;
  *
  */
 public class TimerButton extends Button {
-    // Constants -----------------------------------------------------------------------------------
-    private static final int TIMER_BUTTON_HEIGHT = 100;
-    private static final int TIMER_BUTTON_WIDTH = 100;
-
     // Data ----------------------------------------------------------------------------------------
     private boolean timerIsRunning = false;
     private int timerLength = 1000; // milliseconds
@@ -73,11 +69,15 @@ public class TimerButton extends Button {
                     TimerButton.this.setBackgroundColor(Color.GREEN);
                     TimerButton.this.setText("");
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
-                    // too slow
                     if(timerIsRunning) {
+                        // too slow
                         clearTimer();
                         TimerButton.this.setBackgroundColor(Color.RED);
                         TimerButton.this.setText("TOO FAST");
+                    } else {
+                        // reset button
+                        TimerButton.this.setBackgroundColor(Color.GREEN);
+                        TimerButton.this.setText("");
                     }
                 }
                 return false;
