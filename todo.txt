@@ -27,5 +27,5 @@
 *DONE* set timerLength for all timers when user changes value
 *DONE* setup activity to fragment communication
 *DONE* implement single button screen
-* Fix seekbar labels to show seconds not milliseconds
+*DONE* Fix seekbar labels to show seconds not milliseconds
 * create TimerFragment base class

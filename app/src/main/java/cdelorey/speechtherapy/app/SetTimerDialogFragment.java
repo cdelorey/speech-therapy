@@ -104,7 +104,7 @@ public class SetTimerDialogFragment extends DialogFragment {
     // Private Methods -----------------------------------------------------------------------------
     private void setSeekbarLabel(int progress) {
         timerLabel.setText("Timer length: "
-                + new DecimalFormat("0.00").format(progress)
+                + new DecimalFormat("0.00").format(((double) progress) / 100)
                 + " seconds");
     }
 
