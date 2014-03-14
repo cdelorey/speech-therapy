@@ -28,7 +28,6 @@ public class TimerButton extends Button {
         }
     };
 
-
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
         super(context);

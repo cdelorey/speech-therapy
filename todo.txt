@@ -1,4 +1,3 @@
-* implement single button screen
 * implement multiple buttons screen
 * implement single bar screen
 
@@ -18,4 +17,15 @@
 *DONE* add "too fast" and "done" text to timerButtons
 *DONE* reset timer button to green with no text
 *DONE* clear all timers in onPause
-* set timerLength for all timers when user changes value
+
+03/13/14
+--------
+*DONE* change all timer values to be an int representing milliseconds
+
+03/14/14
+--------
+*DONE* set timerLength for all timers when user changes value
+*DONE* setup activity to fragment communication
+*DONE* implement single button screen
+* Fix seekbar labels to show seconds not milliseconds
+* create TimerFragment base class

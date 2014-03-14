@@ -21,7 +21,7 @@ public class SetTimerDialogFragment extends DialogFragment {
 
     // State ---------------------------------------------------------------------------------------
     private TextView timerLabel;
-    private double timerValue;
+    private int timerValue;
     private TimerDialogListener listener;
 
     // Interfaces ----------------------------------------------------------------------------------
@@ -32,12 +32,12 @@ public class SetTimerDialogFragment extends DialogFragment {
     }
 
     // Getters -------------------------------------------------------------------------------------
-    public double getTimerValue() {
+    public int getTimerValue() {
         return timerValue;
     }
 
     // Initialization Methods ----------------------------------------------------------------------
-    public SetTimerDialogFragment(double timer) {
+    public SetTimerDialogFragment(int timer) {
         timerValue = timer;
     }
 
@@ -63,11 +63,11 @@ public class SetTimerDialogFragment extends DialogFragment {
         timerLabel = (TextView) layout.findViewById(R.id.current_value);
         setSeekbarLabel(timerValue);
         seekBar.setMax(SEEKBAR_MAX);
-        seekBar.setProgress(convertProgressDoubleToInt(timerValue));
+        seekBar.setProgress(timerValue);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                setSeekbarLabel(convertProgressIntToDouble(progress));
+                setSeekbarLabel(progress);
             }
 
             @Override
@@ -76,8 +76,7 @@ public class SetTimerDialogFragment extends DialogFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                int progress = seekBar.getProgress();
-                timerValue = convertProgressIntToDouble(progress);
+                timerValue = seekBar.getProgress();
             }
         });
 
@@ -103,19 +102,7 @@ public class SetTimerDialogFragment extends DialogFragment {
 
 
     // Private Methods -----------------------------------------------------------------------------
-    private double convertProgressIntToDouble(int progress) {
-        // Seekbars store progress as an int, so this value must be converted
-        // to a float to display timer values in terms of milliseconds.
-        double result = progress / 100.0;
-        return result;
-    }
-
-    private int convertProgressDoubleToInt(double progress) {
-        int result = (int) (progress * 100);
-        return result;
-    }
-
-    private void setSeekbarLabel(double progress) {
+    private void setSeekbarLabel(int progress) {
         timerLabel.setText("Timer length: "
                 + new DecimalFormat("0.00").format(progress)
                 + " seconds");

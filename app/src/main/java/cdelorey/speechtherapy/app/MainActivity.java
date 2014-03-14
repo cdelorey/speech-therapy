@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 /**
  *
@@ -26,7 +27,22 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     private String[] tabs = { "Buttons", "Button", "Bar" };
 
     // State ---------------------------------------------------------------------------------------
-    private double timer;
+    private int timer; // milliseconds
+    private SingleButtonFragment singleButtonFragment;
+    private TimerCommunicator singleButtonTimerCommunicator;
+
+    public interface TimerCommunicator {
+        public void onChangeTimer(int milliseconds);
+    }
+
+    // Getters and Setters -------------------------------------------------------------------------
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setSingleButtonFragmentCommunicator(TimerCommunicator communicator) {
+        singleButtonTimerCommunicator = communicator;
+    }
 
     // Lifecycle Methods ---------------------------------------------------------------------------
     @Override
@@ -36,6 +52,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
         // UI Initialization
         viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setOffscreenPageLimit(3);
         actionBar = getSupportActionBar();
         adapter = new TabsPagerAdapter(getSupportFragmentManager());
 
@@ -63,21 +80,19 @@ public class MainActivity extends ActionBarActivity implements TabListener,
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-
-        // Get last timer value or set timer to 0 if first use
-        loadTimerFromPreferences();
+        Log.e(Constants.LOG, "Activity created");
     }
 
     @Override
     public void onPause() {
         super.onPause();
         saveTimerToPreferences();
-        clearAllTimers();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.e(Constants.LOG, "Activity: OnResume");
         loadTimerFromPreferences();
     }
 
@@ -130,6 +145,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     public void onDialogPositiveClick(DialogFragment dialog) {
         SetTimerDialogFragment fragment = (SetTimerDialogFragment) dialog;
         timer = fragment.getTimerValue();
+        singleButtonTimerCommunicator.onChangeTimer(timer);
     }
 
 
@@ -141,20 +157,13 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
     private void loadTimerFromPreferences() {
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
-        timer = Double.longBitsToDouble(prefs.getLong("timer", 0));
+        timer = prefs.getInt("timer", 0);
     }
 
     private void saveTimerToPreferences() {
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         Editor editor = prefs.edit();
-        editor.putLong("timer", Double.doubleToRawLongBits(timer));
+        editor.putInt("timer", timer);
         editor.commit();
-    }
-
-    private void clearAllTimers() {
-        // timers must be added here individually.
-        // TODO: get all timers from activity somehow and clear them in a for loop
-        TimerButton button = (TimerButton) findViewById(R.id.single_button);
-        button.clearTimer();
     }
 }
