@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * Base class for all fragments containing timerButtons
  */
-public abstract class TimerFragment extends Fragment implements MainActivity.TimerCommunicator {
+public abstract class TimerFragment extends Fragment implements MainActivity.FragmentCommunicator {
 
     public TimerFragment() {
 

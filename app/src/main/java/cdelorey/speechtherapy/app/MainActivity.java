@@ -16,7 +16,7 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
 /**
- *
+ * Main
  */
 public class MainActivity extends ActionBarActivity implements TabListener,
         SetTimerDialogFragment.TimerDialogListener {
@@ -28,10 +28,13 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
     // State ---------------------------------------------------------------------------------------
     private int timer; // milliseconds
-    private SingleButtonFragment singleButtonFragment;
-    private TimerCommunicator singleButtonTimerCommunicator;
+    private FragmentCommunicator singleButtonFragmentCommunicator;
+    private FragmentCommunicator multipleButtonsFragmentCommunicator;
 
-    public interface TimerCommunicator {
+    /* TimerCommunicator
+     * Used to call fragment methods from MainActivity */
+    public interface FragmentCommunicator {
+        // MainActivity can notify fragments that user has changed the timer length
         public void onChangeTimer(int milliseconds);
     }
 
@@ -40,8 +43,12 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         return timer;
     }
 
-    public void setSingleButtonFragmentCommunicator(TimerCommunicator communicator) {
-        singleButtonTimerCommunicator = communicator;
+    public void setSingleButtonFragmentCommunicator(FragmentCommunicator communicator) {
+        singleButtonFragmentCommunicator = communicator;
+    }
+
+    public void setMultipleButtonsFragmentCommunicator(FragmentCommunicator communicator) {
+        multipleButtonsFragmentCommunicator = communicator;
     }
 
     // Lifecycle Methods ---------------------------------------------------------------------------
@@ -99,16 +106,13 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     // Options Methods -----------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // add items to action bar
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch(item.getItemId()) {
             case R.id.action_timer:
                 showTimerDialog();
@@ -145,7 +149,8 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     public void onDialogPositiveClick(DialogFragment dialog) {
         SetTimerDialogFragment fragment = (SetTimerDialogFragment) dialog;
         timer = fragment.getTimerValue();
-        singleButtonTimerCommunicator.onChangeTimer(timer);
+        singleButtonFragmentCommunicator.onChangeTimer(timer);
+        multipleButtonsFragmentCommunicator.onChangeTimer(timer);
     }
 
 
