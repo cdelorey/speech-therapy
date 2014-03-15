@@ -1,5 +1,3 @@
-* implement single bar screen
-
 03/11/14
 --------
 *DONE* add labels to seekbar
@@ -28,5 +26,14 @@
 *DONE* implement single button screen
 *DONE* Fix seekbar labels to show seconds not milliseconds
 *DONE* create TimerFragment base class
+
+03/15/14
+--------
+*DONE* implement multiple buttons screen
+* fix bug with single button turning blue too fast
 * implement MultipleButtonsFragment
-* implement multiple buttons screen
+* call clearTimer() on current fragment's timerButtons when user swipes to different tab
+* implement single bar screen
+* add color fill animation to timerButtons
+* remove logging statements
+* make it less hideous
