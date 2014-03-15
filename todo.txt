@@ -30,7 +30,7 @@
 03/15/14
 --------
 *DONE* implement multiple buttons screen
-* fix bug with single button turning blue too fast
+*DONE* fix bug with single button turning blue too fast
 * implement MultipleButtonsFragment
 * call clearTimer() on current fragment's timerButtons when user swipes to different tab
 * implement single bar screen

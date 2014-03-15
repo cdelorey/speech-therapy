@@ -17,7 +17,7 @@ import java.text.DecimalFormat;
  */
 public class SetTimerDialogFragment extends DialogFragment {
     // Constants -----------------------------------------------------------------------------------
-    private static final int SEEKBAR_MAX = 200;
+    private static final int SEEKBAR_MAX = 2000;
 
     // State ---------------------------------------------------------------------------------------
     private TextView timerLabel;
@@ -104,7 +104,7 @@ public class SetTimerDialogFragment extends DialogFragment {
     // Private Methods -----------------------------------------------------------------------------
     private void setSeekbarLabel(int progress) {
         timerLabel.setText("Timer length: "
-                + new DecimalFormat("0.00").format(((double) progress) / 100)
+                + new DecimalFormat("0.00").format(((double) progress) / 1000)
                 + " seconds");
     }
 
