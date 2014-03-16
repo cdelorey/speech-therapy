@@ -38,7 +38,7 @@
 --------
 *DONE* figure out how to put button ids in a list to clean up setupTimerButtons in MultipleButtonsFragment
     -- ids are just ints
-* make app open to last open tab (save tab position in savedPreferences)
+*DONE* make app open to last open tab (save tab position in savedPreferences)
 
 
 * add color fill animation to timerButtons

@@ -28,6 +28,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
     // State ---------------------------------------------------------------------------------------
     private int timer; // milliseconds
+    private int currentTab = 0;
     private FragmentCommunicator singleButtonFragmentCommunicator;
     private FragmentCommunicator multipleButtonsFragmentCommunicator;
 
@@ -111,14 +112,15 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     @Override
     public void onPause() {
         super.onPause();
-        saveTimerToPreferences();
+        saveDataToPreferences();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         Log.e(Constants.LOG, "Activity: OnResume");
-        loadTimerFromPreferences();
+        loadDataFromPreferences();
+        viewPager.setCurrentItem(currentTab);
     }
 
     // Options Methods -----------------------------------------------------------------------------
@@ -174,15 +176,17 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         dialog.show(getSupportFragmentManager(), "SetTimerDialogFragment");
     }
 
-    private void loadTimerFromPreferences() {
+    private void loadDataFromPreferences() {
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         timer = prefs.getInt("timer", 0);
+        currentTab = prefs.getInt("tab", 0);
     }
 
-    private void saveTimerToPreferences() {
+    private void saveDataToPreferences() {
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putInt("timer", timer);
+        editor.putInt("tab", viewPager.getCurrentItem());
         editor.commit();
     }
 }
