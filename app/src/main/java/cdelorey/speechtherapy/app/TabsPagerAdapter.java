@@ -33,4 +33,5 @@ public class TabsPagerAdapter  extends FragmentPagerAdapter {
         // number of tabs
         return 3;
     }
+
 }

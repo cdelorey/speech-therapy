@@ -32,8 +32,9 @@
 *DONE* implement multiple buttons screen
 *DONE* fix bug with single button turning blue too fast
 *DONE* implement MultipleButtonsFragment
+*DONE* call clearTimer() on current fragment's timerButtons when user swipes to different tab
+
 * figure out how to put button ids in a list to clean up setupTimerButtons in MultipleButtonsFragment
-* call clearTimer() on current fragment's timerButtons when user swipes to different tab
 * implement single bar screen
 * add color fill animation to timerButtons
 * remove logging statements

@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.os.Handler;
+import android.util.Log;
 
 /**
  *
@@ -70,6 +71,7 @@ public class TimerButton extends Button {
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(timerIsRunning) {
                         // too slow
+                        Log.e(Constants.LOG, "Action_UP");
                         clearTimer();
                         TimerButton.this.setBackgroundColor(Color.RED);
                         TimerButton.this.setText("TOO FAST");

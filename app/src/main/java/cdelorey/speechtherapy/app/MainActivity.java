@@ -36,6 +36,8 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     public interface FragmentCommunicator {
         // MainActivity can notify fragments that user has changed the timer length
         public void onChangeTimer(int milliseconds);
+        // MainActivity can notify fragments that the user has dragged the screen
+        public void onDragGesture();
     }
 
     // Getters and Setters -------------------------------------------------------------------------
@@ -43,6 +45,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         return timer;
     }
 
+    // Communicators -------------------------------------------------------------------------------
     public void setSingleButtonFragmentCommunicator(FragmentCommunicator communicator) {
         singleButtonFragmentCommunicator = communicator;
     }
@@ -62,7 +65,6 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         viewPager.setOffscreenPageLimit(3);
         actionBar = getSupportActionBar();
         adapter = new TabsPagerAdapter(getSupportFragmentManager());
-
         viewPager.setAdapter(adapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -77,14 +79,30 @@ public class MainActivity extends ActionBarActivity implements TabListener,
             public void onPageSelected(int position) {
                 // select correct tab
                 actionBar.setSelectedNavigationItem(position);
+                //Log.e(Constants.LOG, Integer.toString(position));
             }
 
             @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
+            public void onPageScrolled(int arg0, float arg1, int arg2) {}
 
             @Override
-            public void onPageScrollStateChanged(int arg0) {
+            public void onPageScrollStateChanged(int state) {
+                // Timers must be cleared once a drag begins because the drag gesture prevents the
+                // ACTION_UP MotionEvent from firing, which is necessary for the TimerButtons to
+                // function properly.
+                if(state == ViewPager.SCROLL_STATE_DRAGGING) {
+                    switch(viewPager.getCurrentItem()) {
+                        case 0:
+                            multipleButtonsFragmentCommunicator.onDragGesture();
+                            break;
+                        case 1:
+                            singleButtonFragmentCommunicator.onDragGesture();
+                            break;
+                        case 2:
+                            break;
+                    }
+                }
+
             }
         });
         Log.e(Constants.LOG, "Activity created");
@@ -127,9 +145,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
     // Tab Listener Methods ------------------------------------------------------------------------
     @Override
-    public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
-    }
+    public void onTabReselected(Tab tab, FragmentTransaction ft) {}
 
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -138,9 +154,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     }
 
     @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-    }
+    public void onTabUnselected(Tab tab, FragmentTransaction ft) {}
 
 
     // TimerDialogListener Methods -----------------------------------------------------------------

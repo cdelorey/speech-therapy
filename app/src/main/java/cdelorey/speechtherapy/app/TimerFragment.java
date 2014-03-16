@@ -17,6 +17,7 @@ public abstract class TimerFragment extends Fragment implements MainActivity.Fra
 
     }
 
+    // Fragment methods ----------------------------------------------------------------------------
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,10 +49,13 @@ public abstract class TimerFragment extends Fragment implements MainActivity.Fra
         getTimeFromActivity();
     }
 
+    // FragmentCommunicator methods ----------------------------------------------------------------
     public void onChangeTimer(int milliseconds) {
         setTimers(milliseconds);
     }
+    public void onDragGesture() { clearTimers(); }
 
+    // Private methods -----------------------------------------------------------------------------
     private void getTimeFromActivity() {
         MainActivity activity = (MainActivity) getActivity();
         int milliseconds = activity.getTimer();
@@ -59,6 +63,7 @@ public abstract class TimerFragment extends Fragment implements MainActivity.Fra
         setTimers(milliseconds);
     }
 
+    // Abstract methods ----------------------------------------------------------------------------
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract void setupTimerButtons();
     protected abstract void registerCommunicator();
