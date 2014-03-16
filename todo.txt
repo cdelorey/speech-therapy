@@ -34,9 +34,16 @@
 *DONE* implement MultipleButtonsFragment
 *DONE* call clearTimer() on current fragment's timerButtons when user swipes to different tab
 
-* figure out how to put button ids in a list to clean up setupTimerButtons in MultipleButtonsFragment
-* implement single bar screen
+03/16/14
+--------
+*DONE* figure out how to put button ids in a list to clean up setupTimerButtons in MultipleButtonsFragment
+    -- ids are just ints
+* make app open to last open tab (save tab position in savedPreferences)
+
+
 * add color fill animation to timerButtons
+* implement single bar screen
+* make buttons reset to green after briefly displaying "too fast" or "done". (How does the ios app handle this?)
 * remove logging statements
 * make it less hideous
 * put something in help screen and maybe about screen
