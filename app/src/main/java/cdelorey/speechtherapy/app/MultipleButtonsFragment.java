@@ -3,6 +3,8 @@ package cdelorey.speechtherapy.app;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
 import java.util.ArrayList;
 
 /**
@@ -24,8 +26,13 @@ public class MultipleButtonsFragment extends TimerFragment {
     }
 
     public void setupTimerButtons() {
+        TimerButton button;
+        MainActivity activity = (MainActivity) getActivity();
+        ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.progressBarMultiple);
         for(int id : BUTTON_IDS) {
-            buttons.add((TimerButton) getActivity().findViewById(id));
+            button = (TimerButton) getActivity().findViewById(id);
+            button.setProgressBar(progressBar);
+            buttons.add(button);
         }
     }
 

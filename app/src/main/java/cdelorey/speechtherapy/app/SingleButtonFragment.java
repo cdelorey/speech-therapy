@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 /**
  * Fragment with a single button.
@@ -24,6 +25,8 @@ public class SingleButtonFragment extends TimerFragment {
     public void setupTimerButtons() {
         Log.e(Constants.LOG, "Fragment: OnActivityCreated");
         singleButton = (TimerButton) getActivity().findViewById(R.id.single_button);
+        singleButton.setProgressBar
+                ((ProgressBar) getActivity().findViewById(R.id.progressBarSingle));
     }
 
     public void registerCommunicator() {

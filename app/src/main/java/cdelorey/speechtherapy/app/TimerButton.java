@@ -10,15 +10,19 @@ import android.view.View;
 import android.widget.Button;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 /**
  *
  */
 public class TimerButton extends Button {
     // Data ----------------------------------------------------------------------------------------
+    private static final int TIMER_INTERVAL = 10; // milliseconds
     private boolean timerIsRunning = false;
-    private int timerLength = 1000; // milliseconds
+    private int timerLength; // milliseconds
+    private int progressIncrement = 1;
     private CountDownTimer countDownTimer;
+    private ProgressBar progressBar; // temporary until TimerButtons can inherit from ProgressBar
 
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
@@ -33,8 +37,35 @@ public class TimerButton extends Button {
 
 
     // Public Methods ------------------------------------------------------------------------------
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
+
+    public void setProgress(int progress) {
+        progressBar.setProgress(progress);
+    }
+
     public void setTimerLength(int length) {
         timerLength = length;
+        countDownTimer = new CountDownTimer(timerLength, TIMER_INTERVAL) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int progress = progressBar.getProgress() + progressIncrement;
+                setProgress(progress);
+            }
+
+            @Override
+            public void onFinish() {
+                // button has been held long enough
+                timerIsRunning = false;
+                TimerButton.this.setBackgroundColor(Color.BLUE);
+                TimerButton.this.setText("DONE");
+                setProgress(0);
+            }
+        };
+        progressBar.setMax(length);
+        progressIncrement = timerLength / TIMER_INTERVAL;
+        Log.e(Constants.LOG, "ProgressIncrement: " + Integer.toString(progressIncrement));
     }
 
     public void clearTimer() {
@@ -48,20 +79,6 @@ public class TimerButton extends Button {
     private void setup() {
         this.setText("");
         this.setBackgroundColor(Color.GREEN);
-        countDownTimer = new CountDownTimer(timerLength, 100) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.e(Constants.LOG, "Tick");
-            }
-
-            @Override
-            public void onFinish() {
-                // button has been held long enough
-                timerIsRunning = false;
-                TimerButton.this.setBackgroundColor(Color.BLUE);
-                TimerButton.this.setText("DONE");
-            }
-        };
         setupListener();
     }
 
