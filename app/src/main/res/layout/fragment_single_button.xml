@@ -21,7 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:width="@dimen/timer_button_width"
-        android:height="@dimen/timer_button_height" />
+        android:height="@dimen/timer_button_height"/>
 
 
 </RelativeLayout>

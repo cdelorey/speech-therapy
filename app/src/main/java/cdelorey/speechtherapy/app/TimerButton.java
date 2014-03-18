@@ -17,10 +17,12 @@ import android.widget.ProgressBar;
  */
 public class TimerButton extends Button {
     // Data ----------------------------------------------------------------------------------------
+    private static final int GREEN = 0xff00b358;
+    private static final int BLUE = 0xff0969a2;
+    private static final int RED = 0xffff3d00;
     private static final int TIMER_INTERVAL = 10; // milliseconds
     private boolean timerIsRunning = false;
     private int timerLength; // milliseconds
-    private int progressIncrement = 1;
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar; // temporary until TimerButtons can inherit from ProgressBar
 
@@ -59,27 +61,26 @@ public class TimerButton extends Button {
             public void onFinish() {
                 // button has been held long enough
                 timerIsRunning = false;
-                TimerButton.this.setBackgroundColor(Color.BLUE);
+                TimerButton.this.setBackgroundColor(BLUE);
                 TimerButton.this.setText("DONE");
-                setProgress(0);
+                setProgress(timerLength);
             }
         };
         progressBar.setMax(length);
-        progressIncrement = timerLength / TIMER_INTERVAL;
-        Log.e(Constants.LOG, "ProgressIncrement: " + Integer.toString(progressIncrement));
     }
 
     public void clearTimer() {
         if(countDownTimer != null) {
             countDownTimer.cancel();
         }
+        progressBar.setProgress(0);
     }
 
 
     // Private Methods -----------------------------------------------------------------------------
     private void setup() {
         this.setText("");
-        this.setBackgroundColor(Color.GREEN);
+        this.setBackgroundColor(GREEN);
         setupListener();
     }
 
@@ -91,20 +92,21 @@ public class TimerButton extends Button {
                     // Start new timer
                     countDownTimer.start();
                     timerIsRunning = true;
-                    TimerButton.this.setBackgroundColor(Color.GREEN);
+                    TimerButton.this.setBackgroundColor(GREEN);
                     TimerButton.this.setText("");
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(timerIsRunning) {
                         // too slow
-                        Log.e(Constants.LOG, "Action_UP");
                         clearTimer();
-                        TimerButton.this.setBackgroundColor(Color.RED);
+                        TimerButton.this.setBackgroundColor(RED);
                         TimerButton.this.setText("TOO FAST");
+                        Log.e(Constants.LOG, "IN HERE");
                         setProgress(0);
                     } else {
                         // reset button
-                        TimerButton.this.setBackgroundColor(Color.GREEN);
+                        TimerButton.this.setBackgroundColor(GREEN);
                         TimerButton.this.setText("");
+                        setProgress(0);
                     }
                 }
                 return false;
