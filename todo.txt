@@ -40,8 +40,20 @@
     -- ids are just ints
 *DONE* make app open to last open tab (save tab position in savedPreferences)
 
+03/18/14
+--------
+* change TimerButton to use CountdownTimer instead of a Handler and Runnable.
+* Add single ProgressBar to each button layout
+    -- temporary until TimerButtons themselves can be animated
+* Make TimerButtons update the ProgressBar in their CountdownTimer's onTick method
+
 
 * add color fill animation to timerButtons
+    -- 03/17/14 - This should be easy to do if I change TimerButton to inherit from ProgressBar
+                instead of Button. However, ProgressBars have a maxHeight that is too small and
+                causes problems with the layout. This appears to be defined in a style. I should be
+                able to define a new style and apply it to the TimerButton which would allow me to
+                use ProgressBars but shape them like Buttons.
 * implement single bar screen
 * make buttons reset to green after briefly displaying "too fast" or "done". (How does the ios app handle this?)
 * remove logging statements

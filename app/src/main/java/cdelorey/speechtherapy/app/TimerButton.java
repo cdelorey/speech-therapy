@@ -3,6 +3,7 @@ package cdelorey.speechtherapy.app;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,17 +18,7 @@ public class TimerButton extends Button {
     // Data ----------------------------------------------------------------------------------------
     private boolean timerIsRunning = false;
     private int timerLength = 1000; // milliseconds
-    private Handler handler = new Handler();
-
-    private Runnable timer = new Runnable() {
-        @Override
-        public void run() {
-            // button has been held long enough
-            timerIsRunning = false;
-            TimerButton.this.setBackgroundColor(Color.BLUE);
-            TimerButton.this.setText("DONE");
-        }
-    };
+    private CountDownTimer countDownTimer;
 
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
@@ -47,15 +38,31 @@ public class TimerButton extends Button {
     }
 
     public void clearTimer() {
-        handler.removeCallbacks(timer);
+        if(countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
 
 
     // Private Methods -----------------------------------------------------------------------------
     private void setup() {
-        setupListener();
         this.setText("");
         this.setBackgroundColor(Color.GREEN);
+        countDownTimer = new CountDownTimer(timerLength, 100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.e(Constants.LOG, "Tick");
+            }
+
+            @Override
+            public void onFinish() {
+                // button has been held long enough
+                timerIsRunning = false;
+                TimerButton.this.setBackgroundColor(Color.BLUE);
+                TimerButton.this.setText("DONE");
+            }
+        };
+        setupListener();
     }
 
     private void setupListener() {
@@ -64,7 +71,7 @@ public class TimerButton extends Button {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     // Start new timer
-                    handler.postDelayed(timer, timerLength);
+                    countDownTimer.start();
                     timerIsRunning = true;
                     TimerButton.this.setBackgroundColor(Color.GREEN);
                     TimerButton.this.setText("");
