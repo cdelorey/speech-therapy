@@ -45,9 +45,10 @@
 *DONE* change TimerButton to use CountdownTimer instead of a Handler and Runnable.
 *DONE* Add single ProgressBar to each button layout
     -- temporary until TimerButtons themselves can be animated
-* Make TimerButtons update the ProgressBar in their CountdownTimer's onTick method
+*DONE* Make TimerButtons update the ProgressBar in their CountdownTimer's onTick method
 
 
+* fix bug that timers always turn red when timerLength is 0
 * add color fill animation to timerButtons
     -- 03/17/14 - This should be easy to do if I change TimerButton to inherit from ProgressBar
                 instead of Button. However, ProgressBars have a maxHeight that is too small and

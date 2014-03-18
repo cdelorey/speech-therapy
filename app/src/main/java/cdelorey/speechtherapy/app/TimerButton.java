@@ -50,7 +50,8 @@ public class TimerButton extends Button {
         countDownTimer = new CountDownTimer(timerLength, TIMER_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int progress = progressBar.getProgress() + progressIncrement;
+                //int progress = progressBar.getProgress() + progressIncrement;
+                int progress = timerLength - (int) millisUntilFinished;
                 setProgress(progress);
             }
 
@@ -99,6 +100,7 @@ public class TimerButton extends Button {
                         clearTimer();
                         TimerButton.this.setBackgroundColor(Color.RED);
                         TimerButton.this.setText("TOO FAST");
+                        setProgress(0);
                     } else {
                         // reset button
                         TimerButton.this.setBackgroundColor(Color.GREEN);
