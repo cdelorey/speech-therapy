@@ -2,20 +2,17 @@ package cdelorey.speechtherapy.app;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.ProgressBar;
 
 /**
  *
  */
-public class TimerButton extends Button {
+public class TimerButton extends ProgressBar {
     // Data ----------------------------------------------------------------------------------------
     private static final int GREEN = 0xff00b358;
     private static final int BLUE = 0xff0969a2;
@@ -24,7 +21,6 @@ public class TimerButton extends Button {
     private boolean timerIsRunning = false;
     private int timerLength; // milliseconds
     private CountDownTimer countDownTimer;
-    private ProgressBar progressBar; // temporary until TimerButtons can inherit from ProgressBar
 
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
@@ -39,20 +35,11 @@ public class TimerButton extends Button {
 
 
     // Public Methods ------------------------------------------------------------------------------
-    public void setProgressBar(ProgressBar progressBar) {
-        this.progressBar = progressBar;
-    }
-
-    public void setProgress(int progress) {
-        progressBar.setProgress(progress);
-    }
-
     public void setTimerLength(int length) {
         timerLength = length;
         countDownTimer = new CountDownTimer(timerLength, TIMER_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
-                //int progress = progressBar.getProgress() + progressIncrement;
                 int progress = timerLength - (int) millisUntilFinished;
                 setProgress(progress);
             }
@@ -62,25 +49,25 @@ public class TimerButton extends Button {
                 // button has been held long enough
                 timerIsRunning = false;
                 TimerButton.this.setBackgroundColor(BLUE);
-                TimerButton.this.setText("DONE");
+                //TimerButton.this.setText("DONE");
                 setProgress(timerLength);
             }
         };
-        progressBar.setMax(length);
+        this.setMax(length);
     }
 
     public void clearTimer() {
         if(countDownTimer != null) {
             countDownTimer.cancel();
         }
-        progressBar.setProgress(0);
+        setProgress(0);
     }
 
 
     // Private Methods -----------------------------------------------------------------------------
     private void setup() {
-        this.setText("");
-        this.setBackgroundColor(GREEN);
+        //this.setText("");
+        setBackgroundColor(GREEN);
         setupListener();
     }
 
@@ -92,21 +79,23 @@ public class TimerButton extends Button {
                     // Start new timer
                     countDownTimer.start();
                     timerIsRunning = true;
-                    TimerButton.this.setBackgroundColor(GREEN);
-                    TimerButton.this.setText("");
+                    setBackgroundColor(GREEN);
+                    //TimerButton.this.setText("");
+                    return true;
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(timerIsRunning) {
                         // too slow
                         clearTimer();
-                        TimerButton.this.setBackgroundColor(RED);
-                        TimerButton.this.setText("TOO FAST");
-                        Log.e(Constants.LOG, "IN HERE");
+                        setBackgroundColor(RED);
+                        //TimerButton.this.setText("TOO FAST");
                         setProgress(0);
+                        return true;
                     } else {
                         // reset button
-                        TimerButton.this.setBackgroundColor(GREEN);
-                        TimerButton.this.setText("");
+                        setBackgroundColor(GREEN);
+                        //TimerButton.this.setText("");
                         setProgress(0);
+                        return true;
                     }
                 }
                 return false;

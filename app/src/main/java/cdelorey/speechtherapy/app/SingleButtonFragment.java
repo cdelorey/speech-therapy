@@ -18,15 +18,11 @@ public class SingleButtonFragment extends TimerFragment {
 
     public View inflateView(LayoutInflater inflater, ViewGroup container) {
         View rootView = inflater.inflate(R.layout.fragment_single_button, container, false);
-        Log.e(Constants.LOG, "View created");
         return rootView;
     }
 
     public void setupTimerButtons() {
-        Log.e(Constants.LOG, "Fragment: OnActivityCreated");
         singleButton = (TimerButton) getActivity().findViewById(R.id.single_button);
-        singleButton.setProgressBar
-                ((ProgressBar) getActivity().findViewById(R.id.progressBarSingle));
     }
 
     public void registerCommunicator() {

@@ -27,11 +27,8 @@ public class MultipleButtonsFragment extends TimerFragment {
 
     public void setupTimerButtons() {
         TimerButton button;
-        MainActivity activity = (MainActivity) getActivity();
-        ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.progressBarMultiple);
         for(int id : BUTTON_IDS) {
             button = (TimerButton) getActivity().findViewById(id);
-            button.setProgressBar(progressBar);
             buttons.add(button);
         }
     }
