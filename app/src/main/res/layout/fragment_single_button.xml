@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarSingle"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:paddingTop="100dp"/>
+
     <cdelorey.speechtherapy.app.TimerButton
         android:id="@+id/single_button"
         android:layout_width="wrap_content"
