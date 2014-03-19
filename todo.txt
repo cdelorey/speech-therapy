@@ -60,8 +60,7 @@
 *DONE* implement single bar screen
 *DONE* make timerButton base class
 *DONE* implement SingleBarFragment
-
-
+*DONE* make timerBar stop when user switches tab
 
 * fix bug that timers always turn red when timerLength is 0
 * make timerButtons display vertical progress

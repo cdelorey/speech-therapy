@@ -18,10 +18,11 @@ public class TimerBar extends TimerButton {
 
     @Override
     public void onTimerFinish() {
-        countDownTimer.start();
+        startTimer();
     }
 
     public void startTimer() {
-        countDownTimer.start();
+        startTimer();
     }
+
 }

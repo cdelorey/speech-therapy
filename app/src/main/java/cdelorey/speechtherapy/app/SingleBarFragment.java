@@ -2,6 +2,7 @@ package cdelorey.speechtherapy.app;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,11 @@ public class SingleBarFragment extends TimerFragment {
     }
 
     public void clearTimers() {
-        bar.clearTimer();
+        if(barIsRunning) {
+            bar.clearTimer();
+            barIsRunning = false;
+            button.setText("Start");
+        }
     }
 
     public void setTimers(int milliseconds) {

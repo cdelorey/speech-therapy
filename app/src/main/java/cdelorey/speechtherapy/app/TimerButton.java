@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
+import android.util.Log;
 
 /**
  *
@@ -52,6 +53,11 @@ public abstract class TimerButton extends ProgressBar {
             countDownTimer.cancel();
         }
         setProgress(0);
+    }
+
+    public void startTimer() {
+        timerIsRunning = true;
+        countDownTimer.start();
     }
 
     // Abstract Methods ----------------------------------------------------------------------------

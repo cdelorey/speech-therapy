@@ -105,6 +105,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
                             singleButtonFragmentCommunicator.onDragGesture();
                             break;
                         case 2:
+                            singleBarFragmentCommunicator.onDragGesture();
                             break;
                     }
                 }

@@ -33,8 +33,7 @@ public class TimerButtonVertical extends TimerButton {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     // Start new timer
                     setProgressDrawable(getResources().getDrawable(R.drawable.timer_button));
-                    countDownTimer.start();
-                    timerIsRunning = true;
+                    startTimer();
                     return true;
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(timerIsRunning) {
