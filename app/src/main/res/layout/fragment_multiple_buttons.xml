@@ -11,21 +11,21 @@
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button2"
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"/>
+                android:layout_margin="20dp"/>
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button3"
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"/>
+                android:layout_margin="20dp"/>
         </TableRow>
 
         <TableRow android:layout_weight="1" >
@@ -35,21 +35,21 @@
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button5"
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button6"
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
         </TableRow>
 
         <TableRow android:layout_weight="1" >
@@ -59,21 +59,21 @@
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button8"
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button9"
                 style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="20dp" />
         </TableRow>
 
     </TableLayout>
