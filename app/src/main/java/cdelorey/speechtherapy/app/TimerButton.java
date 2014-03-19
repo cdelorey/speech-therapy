@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.util.Log;
 import android.widget.ProgressBar;
 
 /**
@@ -48,8 +47,7 @@ public class TimerButton extends ProgressBar {
             public void onFinish() {
                 // button has been held long enough
                 timerIsRunning = false;
-                TimerButton.this.setBackgroundColor(BLUE);
-                //TimerButton.this.setText("DONE");
+                setProgressDrawable(getResources().getDrawable(R.drawable.timer_button_done));
                 setProgress(timerLength);
             }
         };
@@ -66,8 +64,6 @@ public class TimerButton extends ProgressBar {
 
     // Private Methods -----------------------------------------------------------------------------
     private void setup() {
-        //this.setText("");
-        setBackgroundColor(GREEN);
         setupListener();
     }
 
@@ -77,23 +73,20 @@ public class TimerButton extends ProgressBar {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     // Start new timer
+                    setProgressDrawable(getResources().getDrawable(R.drawable.timer_button));
                     countDownTimer.start();
                     timerIsRunning = true;
-                    setBackgroundColor(GREEN);
-                    //TimerButton.this.setText("");
                     return true;
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(timerIsRunning) {
                         // too slow
                         clearTimer();
-                        setBackgroundColor(RED);
-                        //TimerButton.this.setText("TOO FAST");
+                        setProgressDrawable(getResources().getDrawable(R.drawable.timer_button_too_fast));
                         setProgress(0);
                         return true;
                     } else {
                         // reset button
-                        setBackgroundColor(GREEN);
-                        //TimerButton.this.setText("");
+                        setProgressDrawable(getResources().getDrawable(R.drawable.timer_button));
                         setProgress(0);
                         return true;
                     }

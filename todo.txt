@@ -48,15 +48,22 @@
 *DONE* Make TimerButtons update the ProgressBar in their CountdownTimer's onTick method
 *DONE* make TimerButtons inherit from ProgressBar instead of Button
 
-* fix bug that timers always turn red when timerLength is 0
-* add color fill animation to timerButtons
+03/19/14
+--------
+*DONE* add color fill animation to timerButtons
     -- 03/17/14 - This should be easy to do if I change TimerButton to inherit from ProgressBar
                 instead of Button. However, ProgressBars have a maxHeight that is too small and
                 causes problems with the layout. This appears to be defined in a style. I should be
                 able to define a new style and apply it to the TimerButton which would allow me to
                 use ProgressBars but shape them like Buttons.
+*DONE* apply style to new TimerButtons to make them look like buttons, not progressBars
 * implement single bar screen
-* make buttons reset to green after briefly displaying "too fast" or "done". (How does the ios app handle this?)
+* implement SingleBarFragment
+* make timerButtons display vertical progress. (vertical subclass)
+
+
+* fix bug that timers always turn red when timerLength is 0
+* make buttons reset after turning red (How does the ios app handle this?)
 * remove logging statements
 * make it less hideous
 * put something in help screen and maybe about screen

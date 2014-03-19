@@ -8,21 +8,21 @@
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button1"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button2"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"/>
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button3"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"/>
@@ -32,21 +32,21 @@
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button4"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button5"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button6"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />
@@ -56,21 +56,21 @@
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button7"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button8"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />
 
             <cdelorey.speechtherapy.app.TimerButton
                 android:id="@+id/button9"
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@style/TimerButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp" />

@@ -5,4 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TimerButton" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/timer_button</item>
+        <item name="android:minHeight">10dp</item>
+        <item name="android:maxHeight">1000dp</item>
+    </style>
+
 </resources>
