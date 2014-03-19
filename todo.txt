@@ -61,8 +61,9 @@
 *DONE* make timerButton base class
 *DONE* implement SingleBarFragment
 *DONE* make timerBar stop when user switches tab
+*DONE* fix bug when timerbar timer is set to 0
+*DONE* fix bug that timers always turn red when timerLength is 0
 
-* fix bug that timers always turn red when timerLength is 0
 * make timerButtons display vertical progress
 * make buttons reset after turning red maybe? (How does the ios app handle this?)
 * remove logging statements

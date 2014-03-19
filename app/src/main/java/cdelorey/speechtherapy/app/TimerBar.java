@@ -21,8 +21,4 @@ public class TimerBar extends TimerButton {
         startTimer();
     }
 
-    public void startTimer() {
-        startTimer();
-    }
-
 }

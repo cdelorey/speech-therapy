@@ -13,7 +13,7 @@ import android.util.Log;
 public abstract class TimerButton extends ProgressBar {
     // Data ----------------------------------------------------------------------------------------
     private static final int TIMER_INTERVAL = 10; // milliseconds
-    private int timerLength; // milliseconds
+    protected int timerLength; // milliseconds
     protected CountDownTimer countDownTimer;
     protected boolean timerIsRunning = false;
 

@@ -27,14 +27,17 @@ public class SingleBarFragment extends TimerFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(barIsRunning) {
-                    barIsRunning = false;
-                    bar.clearTimer();
-                    button.setText("Start");
-                } else {
-                    barIsRunning = true;
-                    bar.startTimer();
-                    button.setText("Stop");
+                if(bar.timerLength > 0) {
+                    if (barIsRunning) {
+                        barIsRunning = false;
+                        bar.clearTimer();
+                        button.setText("Start");
+                    } else {
+                        barIsRunning = true;
+                        bar.startTimer();
+                        button.setText("Stop");
+                        Log.e(Constants.LOG, "Starting timer");
+                    }
                 }
             }
         });
