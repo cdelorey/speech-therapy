@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <cdelorey.speechtherapy.app.TimerButtonVertical
-        android:id="@+id/single_button"
+    <cdelorey.speechtherapy.app.TimerBar
+        android:id="@+id/timer_bar"
         android:layout_width="fill_parent"
         android:layout_height="160dp"
         android:paddingLeft="60dp"
@@ -15,11 +15,11 @@
         style="@style/TimerButton"/>
 
     <Button
+        android:id="@+id/timer_bar_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
-        android:id="@+id/button"
-        android:layout_below="@+id/single_button"
+        android:layout_below="@+id/timer_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp" />
 

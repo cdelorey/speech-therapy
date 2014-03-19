@@ -31,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     private int currentTab = 0;
     private FragmentCommunicator singleButtonFragmentCommunicator;
     private FragmentCommunicator multipleButtonsFragmentCommunicator;
+    private FragmentCommunicator singleBarFragmentCommunicator;
 
     /* TimerCommunicator
      * Used to call fragment methods from MainActivity */
@@ -53,6 +54,10 @@ public class MainActivity extends ActionBarActivity implements TabListener,
 
     public void setMultipleButtonsFragmentCommunicator(FragmentCommunicator communicator) {
         multipleButtonsFragmentCommunicator = communicator;
+    }
+
+    public void setSingleBarFragmentCommunicator(FragmentCommunicator communicator) {
+        singleBarFragmentCommunicator = communicator;
     }
 
     // Lifecycle Methods ---------------------------------------------------------------------------
@@ -167,6 +172,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         timer = fragment.getTimerValue();
         singleButtonFragmentCommunicator.onChangeTimer(timer);
         multipleButtonsFragmentCommunicator.onChangeTimer(timer);
+        singleBarFragmentCommunicator.onChangeTimer(timer);
     }
 
 

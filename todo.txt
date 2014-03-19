@@ -59,12 +59,13 @@
 *DONE* apply style to new TimerButtons to make them look like buttons, not progressBars
 *DONE* implement single bar screen
 *DONE* make timerButton base class
-* implement SingleBarFragment
-* make timerButtons display vertical progress. (vertical subclass)
+*DONE* implement SingleBarFragment
+
 
 
 * fix bug that timers always turn red when timerLength is 0
-* make buttons reset after turning red (How does the ios app handle this?)
+* make timerButtons display vertical progress
+* make buttons reset after turning red maybe? (How does the ios app handle this?)
 * remove logging statements
 * make it less hideous
 * put something in help screen and maybe about screen
