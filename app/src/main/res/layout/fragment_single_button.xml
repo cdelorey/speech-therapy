@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <cdelorey.speechtherapy.app.TimerButton
+    <cdelorey.speechtherapy.app.TimerButtonVertical
         android:id="@+id/single_button"
         android:layout_width="160dp"
         android:layout_height="160dp"

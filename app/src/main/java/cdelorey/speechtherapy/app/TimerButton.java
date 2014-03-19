@@ -4,32 +4,25 @@ package cdelorey.speechtherapy.app;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ProgressBar;
 
 /**
  *
  */
-public class TimerButton extends ProgressBar {
+public abstract class TimerButton extends ProgressBar {
     // Data ----------------------------------------------------------------------------------------
-    private static final int GREEN = 0xff00b358;
-    private static final int BLUE = 0xff0969a2;
-    private static final int RED = 0xffff3d00;
     private static final int TIMER_INTERVAL = 10; // milliseconds
-    private boolean timerIsRunning = false;
     private int timerLength; // milliseconds
-    private CountDownTimer countDownTimer;
+    protected CountDownTimer countDownTimer;
+    protected boolean timerIsRunning = false;
 
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
         super(context);
-        setup();
     }
 
     public TimerButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setup();
     }
 
 
@@ -47,8 +40,8 @@ public class TimerButton extends ProgressBar {
             public void onFinish() {
                 // button has been held long enough
                 timerIsRunning = false;
-                setProgressDrawable(getResources().getDrawable(R.drawable.timer_button_done));
                 setProgress(timerLength);
+                onTimerFinish();
             }
         };
         this.setMax(length);
@@ -61,39 +54,6 @@ public class TimerButton extends ProgressBar {
         setProgress(0);
     }
 
-
-    // Private Methods -----------------------------------------------------------------------------
-    private void setup() {
-        setupListener();
-    }
-
-    private void setupListener() {
-        this.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Start new timer
-                    setProgressDrawable(getResources().getDrawable(R.drawable.timer_button));
-                    countDownTimer.start();
-                    timerIsRunning = true;
-                    return true;
-                } else if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(timerIsRunning) {
-                        // too slow
-                        clearTimer();
-                        setProgressDrawable(getResources().getDrawable(R.drawable.timer_button_too_fast));
-                        setProgress(0);
-                        return true;
-                    } else {
-                        // reset button
-                        setProgressDrawable(getResources().getDrawable(R.drawable.timer_button));
-                        setProgress(0);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-    }
-
+    // Abstract Methods ----------------------------------------------------------------------------
+    public abstract void onTimerFinish();
 }
