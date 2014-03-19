@@ -57,7 +57,8 @@
                 able to define a new style and apply it to the TimerButton which would allow me to
                 use ProgressBars but shape them like Buttons.
 *DONE* apply style to new TimerButtons to make them look like buttons, not progressBars
-* implement single bar screen
+*DONE* implement single bar screen
+* make timerButton base class
 * implement SingleBarFragment
 * make timerButtons display vertical progress. (vertical subclass)
 

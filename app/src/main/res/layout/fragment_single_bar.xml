@@ -4,12 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Single Bar Screen"
-        android:textSize="20dp"
-        android:layout_centerInParent="true"/>
+    <cdelorey.speechtherapy.app.TimerButton
+        android:id="@+id/single_button"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        style="@style/TimerButton"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/button"
+        android:layout_below="@+id/single_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
 
 </RelativeLayout>
