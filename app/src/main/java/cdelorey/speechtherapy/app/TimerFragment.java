@@ -54,6 +54,7 @@ public abstract class TimerFragment extends Fragment implements MainActivity.Fra
         setTimers(milliseconds);
     }
     public void onDragGesture() { clearTimers(); }
+    public void onLeaveFragment() {}
 
     // Private methods -----------------------------------------------------------------------------
     private void getTimeFromActivity() {

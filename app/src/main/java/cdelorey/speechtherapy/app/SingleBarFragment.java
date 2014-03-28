@@ -60,5 +60,10 @@ public class SingleBarFragment extends TimerFragment {
         bar.setTimerLength(milliseconds);
     }
 
+    @Override
+    public void onLeaveFragment() {
+        clearTimers();
+    }
+
 
 }

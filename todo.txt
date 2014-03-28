@@ -69,7 +69,7 @@
 *DONE* fix gingerbread progressbar bug
 *DONE* make bar move backwards
 *DONE* make buttons reset only when last button has been pressed
-* make bar stop and reset to forwards movement when changing tab
+*DONE* make bar stop and reset to forwards movement when changing tab
 
 * fix overflow menu on gingerbread
 * make timerButtons display vertical progress

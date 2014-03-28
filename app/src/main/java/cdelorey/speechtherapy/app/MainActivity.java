@@ -40,6 +40,8 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         public void onChangeTimer(int milliseconds);
         // MainActivity can notify fragments that the user has dragged the screen
         public void onDragGesture();
+        // MainActivity can notify a fragment when it's tab has been switched
+        public void onLeaveFragment();
     }
 
     // Getters and Setters -------------------------------------------------------------------------
@@ -83,6 +85,13 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
+                // reset bar
+                if(position == 1) {
+                    if(singleBarFragmentCommunicator != null) {
+                        singleBarFragmentCommunicator.onLeaveFragment();
+                    }
+                }
+
                 // select correct tab
                 actionBar.setSelectedNavigationItem(position);
                 //Log.e(Constants.LOG, Integer.toString(position));

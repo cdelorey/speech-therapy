@@ -22,4 +22,10 @@ public class TimerBar extends TimerButton {
         startTimer();
     }
 
+    @Override
+    public void clearTimer() {
+        super.clearTimer();
+        isMovingBackwards = false;
+    }
+
 }
