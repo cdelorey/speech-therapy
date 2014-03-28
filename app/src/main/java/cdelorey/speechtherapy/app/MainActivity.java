@@ -33,7 +33,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     private FragmentCommunicator multipleButtonsFragmentCommunicator;
     private FragmentCommunicator singleBarFragmentCommunicator;
 
-    /* TimerCommunicator
+    /* FragmentCommunicator
      * Used to call fragment methods from MainActivity */
     public interface FragmentCommunicator {
         // MainActivity can notify fragments that user has changed the timer length

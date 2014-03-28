@@ -13,6 +13,16 @@ import android.graphics.Rect;
  *
  */
 public class TimerButtonVertical extends TimerButton {
+    private boolean isFinished = false; // has the button been pressed long enough?
+    private TimerButtonCommunicator timerButtonCommunicator;
+
+    /* TimerButtonCommunicator
+     * Used to call fragment methods from TimerButton */
+    public interface TimerButtonCommunicator {
+        // TimerButton can notify fragment that it has been pressed long enough
+        public void onFinished();
+    }
+
     // Constructors --------------------------------------------------------------------------------
     public TimerButtonVertical(Context context) {
         super(context);
@@ -24,9 +34,23 @@ public class TimerButtonVertical extends TimerButton {
         setupListener();
     }
 
+    public void setTimerButtonCommunicator(TimerButtonCommunicator communicator) {
+        timerButtonCommunicator = communicator;
+    }
+
+    public boolean getIsFinished() {
+        return isFinished;
+    }
+
     @Override
     public void onTimerFinish() {
         setProgressBarBackground(getResources().getDrawable(R.drawable.timer_button_done));
+    }
+
+    public void resetButton() {
+        isFinished = false;
+        setProgressBarBackground(getResources().getDrawable(R.drawable.timer_button));
+        setProgress(0);
     }
 
     // Private Methods -----------------------------------------------------------------------------
@@ -58,9 +82,14 @@ public class TimerButtonVertical extends TimerButton {
                         setProgress(0);
                         return true;
                     } else {
-                        // reset button
-                        setProgressBarBackground(getResources().getDrawable(R.drawable.timer_button));
-                        setProgress(0);
+                        isFinished = true;
+                        // multiple buttons
+                        if(timerButtonCommunicator != null) {
+                            timerButtonCommunicator.onFinished();
+                        // single button
+                        } else {
+                            resetButton();
+                        }
                         return true;
                     }
                 }

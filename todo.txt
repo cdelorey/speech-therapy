@@ -68,11 +68,11 @@
 --------
 *DONE* fix gingerbread progressbar bug
 *DONE* make bar move backwards
-* make buttons reset only when last button has been pressed
+*DONE* make buttons reset only when last button has been pressed
+* make bar stop and reset to forwards movement when changing tab
 
 * fix overflow menu on gingerbread
 * make timerButtons display vertical progress
-* make buttons reset after turning red maybe? (How does the ios app handle this?)
 * remove logging statements
 * make it less hideous
 * put something in help screen and maybe about screen
