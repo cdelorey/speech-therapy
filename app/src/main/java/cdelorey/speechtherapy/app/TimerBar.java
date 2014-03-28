@@ -18,6 +18,7 @@ public class TimerBar extends TimerButton {
 
     @Override
     public void onTimerFinish() {
+        isMovingBackwards = !isMovingBackwards;
         startTimer();
     }
 

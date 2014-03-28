@@ -16,6 +16,7 @@ public abstract class TimerButton extends ProgressBar {
     protected int timerLength; // milliseconds
     protected CountDownTimer countDownTimer;
     protected boolean timerIsRunning = false;
+    protected boolean isMovingBackwards = false;
 
     // Constructors --------------------------------------------------------------------------------
     public TimerButton(Context context) {
@@ -33,7 +34,12 @@ public abstract class TimerButton extends ProgressBar {
         countDownTimer = new CountDownTimer(timerLength, TIMER_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int progress = timerLength - (int) millisUntilFinished;
+                int progress = 0;
+                if(isMovingBackwards) {
+                    progress = (int) millisUntilFinished;
+                } else {
+                    progress = timerLength - (int) millisUntilFinished;
+                }
                 setProgress(progress);
             }
 
@@ -41,7 +47,11 @@ public abstract class TimerButton extends ProgressBar {
             public void onFinish() {
                 // button has been held long enough
                 timerIsRunning = false;
-                setProgress(timerLength);
+                if(isMovingBackwards) {
+                    setProgress(0);
+                } else {
+                    setProgress(timerLength);
+                }
                 onTimerFinish();
             }
         };
