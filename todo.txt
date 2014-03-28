@@ -64,6 +64,10 @@
 *DONE* fix bug when timerbar timer is set to 0
 *DONE* fix bug that timers always turn red when timerLength is 0
 
+03/28/14
+--------
+*DONE* fix gingerbread progressbar bug
+
 * make timerButtons display vertical progress
 * make buttons reset after turning red maybe? (How does the ios app handle this?)
 * remove logging statements
