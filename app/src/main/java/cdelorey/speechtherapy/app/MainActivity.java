@@ -85,10 +85,18 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                // reset bar
+                // reset bar and buttons
                 if(position == 1) {
                     if(singleBarFragmentCommunicator != null) {
                         singleBarFragmentCommunicator.onLeaveFragment();
+                    }
+                    if(multipleButtonsFragmentCommunicator != null) {
+                        multipleButtonsFragmentCommunicator.onLeaveFragment();
+                    }
+                // reset single button
+                } else {
+                    if(singleButtonFragmentCommunicator != null) {
+                        singleButtonFragmentCommunicator.onLeaveFragment();
                     }
                 }
 

@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
  * Fragment with a single button.
  */
 public class SingleButtonFragment extends TimerFragment {
-    private TimerButton singleButton;
+    private TimerButtonVertical singleButton;
 
     public SingleButtonFragment() {
 
@@ -22,7 +22,7 @@ public class SingleButtonFragment extends TimerFragment {
     }
 
     public void setupTimerButtons() {
-        singleButton = (TimerButton) getActivity().findViewById(R.id.single_button);
+        singleButton = (TimerButtonVertical) getActivity().findViewById(R.id.single_button);
     }
 
     public void registerCommunicator() {
@@ -36,5 +36,10 @@ public class SingleButtonFragment extends TimerFragment {
 
     public void setTimers(int milliseconds) {
         singleButton.setTimerLength(milliseconds);
+    }
+
+    @Override
+    public void onLeaveFragment() {
+        singleButton.resetButton();
     }
 }

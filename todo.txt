@@ -70,8 +70,8 @@
 *DONE* make bar move backwards
 *DONE* make buttons reset only when last button has been pressed
 *DONE* make bar stop and reset to forwards movement when changing tab
+*DONE* make buttons reset when leaving tab
 
-* fix overflow menu on gingerbread
 * make timerButtons display vertical progress
 * remove logging statements
 * make it less hideous

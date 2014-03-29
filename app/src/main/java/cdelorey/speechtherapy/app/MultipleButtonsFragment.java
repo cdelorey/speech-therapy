@@ -60,6 +60,11 @@ public class MultipleButtonsFragment extends TimerFragment implements
         }
     }
 
+    @Override
+    public void onLeaveFragment() {
+        resetButtons();
+    }
+
     // returns true if all buttons have been pressed successfully
     private boolean allButtonsAreFinished() {
         for(TimerButtonVertical button : buttons) {
