@@ -1,10 +1,15 @@
 package cdelorey.speechtherapy.app;
 
 import android.app.ActionBar;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
+import android.view.ViewTreeObserver;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import java.util.ArrayList;
@@ -24,7 +29,25 @@ public class MultipleButtonsFragment extends TimerFragment implements
     }
 
     public View inflateView(LayoutInflater inflater, ViewGroup container) {
-        View rootView = inflater.inflate(R.layout.fragment_multiple_buttons, container, false);
+        ViewTreeObserver observer = null;
+        final View rootView = inflater.inflate(R.layout.fragment_multiple_buttons, container, false);
+        if(rootView != null){
+            observer = rootView.getViewTreeObserver();
+        }
+        if (observer != null) {
+
+            observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    if(Build.VERSION.SDK_INT < 16) {
+                        rootView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    } else {
+                        rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                    setButtonSize();
+                }
+            });
+        }
         return rootView;
     }
 
@@ -34,6 +57,25 @@ public class MultipleButtonsFragment extends TimerFragment implements
             button = (TimerButtonVertical) getActivity().findViewById(id);
             button.setTimerButtonCommunicator(this);
             buttons.add(button);
+        }
+    }
+
+    private void setButtonSize() {
+        LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.table);
+        int width = layout.getMeasuredWidth();
+        int height = layout.getMeasuredHeight();
+        int size;
+
+        if(width < height) {
+            size = (width - 80) / 3; // 60 = padding
+        } else {
+            size = (height - 80) / 3;
+        }
+
+        for(TimerButtonVertical button : buttons) {
+            button.getLayoutParams().height = size;
+            button.getLayoutParams().width = size;
+            button.setPadding(20, 20, 20, 20);
         }
     }
 

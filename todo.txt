@@ -75,7 +75,8 @@
 04/02/14
 --------
 *DONE* make buttons round
-* fix round buttons in multipleButtons Layout
+*DONE* fix round buttons in multipleButtons Layout
+* center buttons in landscape multipleButtons layout
 * switch from tabs to dots
 * add background
 * change button style
