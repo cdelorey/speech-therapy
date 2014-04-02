@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="10px"
     >
-
-        <LinearLayout android:layout_weight="1"
+        <!-- set linerLayout's weight to 1 to spread buttons equally vertically -->
+        <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="horizontal">
@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
 
-    <LinearLayout android:layout_weight="1"
+    <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal">
@@ -54,7 +54,7 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
 
-    <LinearLayout android:layout_weight="1"
+    <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal">

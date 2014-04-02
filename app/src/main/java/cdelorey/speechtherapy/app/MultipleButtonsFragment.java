@@ -21,6 +21,7 @@ public class MultipleButtonsFragment extends TimerFragment implements
         TimerButtonVertical.TimerButtonCommunicator {
     private static final int[] BUTTON_IDS = { R.id.button1, R.id.button2, R.id.button3, R.id.button4,
         R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9 };
+    private static final int PADDING = 10;
 
     ArrayList<TimerButtonVertical> buttons = new ArrayList<TimerButtonVertical>();
 
@@ -57,25 +58,6 @@ public class MultipleButtonsFragment extends TimerFragment implements
             button = (TimerButtonVertical) getActivity().findViewById(id);
             button.setTimerButtonCommunicator(this);
             buttons.add(button);
-        }
-    }
-
-    private void setButtonSize() {
-        LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.table);
-        int width = layout.getMeasuredWidth();
-        int height = layout.getMeasuredHeight();
-        int size;
-
-        if(width < height) {
-            size = (width - 80) / 3; // 60 = padding
-        } else {
-            size = (height - 80) / 3;
-        }
-
-        for(TimerButtonVertical button : buttons) {
-            button.getLayoutParams().height = size;
-            button.getLayoutParams().width = size;
-            button.setPadding(20, 20, 20, 20);
         }
     }
 
@@ -122,6 +104,28 @@ public class MultipleButtonsFragment extends TimerFragment implements
     private void resetButtons() {
         for(TimerButtonVertical button : buttons) {
             button.resetButton();
+        }
+    }
+
+    private int calculateButtonSize() {
+        LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.table);
+        int width = layout.getMeasuredWidth();
+        int height = layout.getMeasuredHeight();
+
+        if(width < height) {
+            return (width - (PADDING * 4)) / 3;
+        } else {
+            return(height - (PADDING * 4)) / 3;
+        }
+    }
+
+    private void setButtonSize() {
+        int size = calculateButtonSize();
+
+        for(TimerButtonVertical button : buttons) {
+            button.getLayoutParams().height = size;
+            button.getLayoutParams().width = size;
+            button.setPadding(PADDING, PADDING, PADDING, PADDING);
         }
     }
 }
