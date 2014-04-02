@@ -72,7 +72,17 @@
 *DONE* make bar stop and reset to forwards movement when changing tab
 *DONE* make buttons reset when leaving tab
 
+04/02/14
+--------
+*DONE* make buttons round
+* fix round buttons in multipleButtons Layout
+* switch from tabs to dots
+* add background
+* change button style
+* add x and checkmark to button drawables
 * make timerButtons display vertical progress
+* add seekbar to timerButtons
+
+
 * remove logging statements
-* make it less hideous
 * put something in help screen and maybe about screen

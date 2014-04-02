@@ -12,7 +12,7 @@
         android:paddingRight="60dp"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        style="@style/TimerButton"/>
+        style="@style/TimerBar"/>
 
     <Button
         android:id="@+id/timer_bar_button"

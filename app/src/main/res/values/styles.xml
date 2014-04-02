@@ -12,4 +12,11 @@
         <item name="android:maxHeight">1000dp</item>
     </style>
 
+    <style name="TimerBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/timer_bar</item>
+        <item name="android:minHeight">10dp</item>
+        <item name="android:maxHeight">1000dp</item>
+    </style>
+
 </resources>
