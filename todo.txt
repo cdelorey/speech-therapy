@@ -76,10 +76,10 @@
 --------
 *DONE* make buttons round
 *DONE* fix round buttons in multipleButtons Layout
+*DONE* add background
+*DONE* change button style
 * center buttons in landscape multipleButtons layout
 * switch from tabs to dots
-* add background
-* change button style
 * add x and checkmark to button drawables
 * make timerButtons display vertical progress
 * add seekbar to timerButtons
