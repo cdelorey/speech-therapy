@@ -8,6 +8,7 @@ import android.util.Log;
 import android.util.AttributeSet;
 import android.graphics.drawable.Drawable;
 import android.graphics.Rect;
+import android.graphics.Canvas;
 
 /**
  *
@@ -15,6 +16,7 @@ import android.graphics.Rect;
 public class TimerButtonVertical extends TimerButton {
     private boolean isFinished = false; // has the button been pressed long enough?
     private TimerButtonCommunicator timerButtonCommunicator;
+    private int x, y, z, w;
 
     /* TimerButtonCommunicator
      * Used to call fragment methods from TimerButton */
@@ -51,6 +53,39 @@ public class TimerButtonVertical extends TimerButton {
         isFinished = false;
         setProgressBarBackground(getResources().getDrawable(R.drawable.timer_button));
         setProgress(0);
+    }
+
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(h, w, oldh, oldw);
+        this.x = w;
+        this.y = h;
+        this.z = oldw;
+        this.w = oldh;
+    }
+
+    @Override
+    protected synchronized void onMeasure(int widthMeasureSpec,
+                                          int heightMeasureSpec) {
+        super.onMeasure(heightMeasureSpec, widthMeasureSpec);
+        setMeasuredDimension(getMeasuredHeight(), getMeasuredWidth());
+    }
+
+    protected void onDraw(Canvas canvas) {
+        canvas.rotate(-90);
+        canvas.translate(-getHeight(), 0);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public synchronized void setProgress(int progress) {
+
+        if (progress >= 0)
+            super.setProgress(progress);
+
+        else
+            super.setProgress(0);
+        onSizeChanged(x, y, z, w);
+
     }
 
     // Private Methods -----------------------------------------------------------------------------
