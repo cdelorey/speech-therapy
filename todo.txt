@@ -80,9 +80,13 @@
 *DONE* change button style
 *DONE* make timerButtons display vertical progress
 
-* center buttons in landscape multipleButtons layout
-* switch from tabs to dots
+04/06/14
+--------
+*DONE* switch from tabs to dots
+* make buttons look like buttons
+* make dots look better
 * add x and checkmark to button drawables
+* center buttons in landscape multipleButtons layout
 * add seekbar to timerButtons
 
 

@@ -6,8 +6,8 @@
 
     <cdelorey.speechtherapy.app.TimerButtonVertical
         android:id="@+id/single_button"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         style="@style/TimerButton"/>

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import com.viewpagerindicator.CirclePageIndicator;
+
 /**
  * Main
  */
@@ -24,7 +26,6 @@ public class MainActivity extends ActionBarActivity implements TabListener,
     private ViewPager viewPager;
     private TabsPagerAdapter adapter;
     private ActionBar actionBar;
-    private String[] tabs = { "Buttons", "Button", "Bar" };
 
     // State ---------------------------------------------------------------------------------------
     private int timer; // milliseconds
@@ -69,20 +70,18 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         setContentView(R.layout.activity_main);
 
         // UI Initialization
+        actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(3);
-        actionBar = getSupportActionBar();
         adapter = new TabsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
 
-        // Add tabs
-        for(String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
-        }
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 // reset bar and buttons
@@ -99,10 +98,6 @@ public class MainActivity extends ActionBarActivity implements TabListener,
                         singleButtonFragmentCommunicator.onLeaveFragment();
                     }
                 }
-
-                // select correct tab
-                actionBar.setSelectedNavigationItem(position);
-                //Log.e(Constants.LOG, Integer.toString(position));
             }
 
             @Override

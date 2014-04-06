@@ -8,7 +8,7 @@
 <item android:id="@android:id/background">
     <shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android" >
         <corners android:radius="10dip" />
-        <solid  android:color="#fefefe" />
+        <solid  android:color="#ccccbb" />
     </shape>
 </item>
 
@@ -17,7 +17,7 @@
     <clip>
         <shape android:shape="rectangle"  >
             <corners android:radius="10dip" />
-            <solid  android:color="#94dcea"  />
+            <solid  android:color="#dddd88"  />
         </shape>
     </clip>
 </item>
