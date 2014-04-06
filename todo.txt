@@ -83,11 +83,18 @@
 04/06/14
 --------
 *DONE* switch from tabs to dots
+* center buttons in portrait multipleButtons layout
+* center buttons in landscape multipleButtons layout
+* make button border relative to screen size somehow
 * make buttons look like buttons
 * make dots look better
 * add x and checkmark to button drawables
-* center buttons in landscape multipleButtons layout
 * add seekbar to timerButtons
+* reduce buttons to 6 on small screens
+* prompt to set timer on first use OR move timer bar out of dialog
+    * move timer seekbar to fragment
+    * put timer fragment in main activity for tablets
+    * make timer dialog look better for phones
 
 
 * remove logging statements

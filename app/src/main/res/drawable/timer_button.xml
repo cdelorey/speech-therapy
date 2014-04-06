@@ -4,11 +4,12 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!-- background properties  -->
+<!-- background properties #315668 -->
 <item android:id="@android:id/background">
     <shape android:shape="oval" xmlns:android="http://schemas.android.com/apk/res/android" >
         <corners android:radius="10dip" />
-        <solid android:color="#315668"  />
+        <stroke android:color="#fff3f3f3" android:width="20dp" />
+        <solid android:color="#7EA3B5"  />
     </shape>
 </item>
 

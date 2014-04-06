@@ -21,7 +21,7 @@ public class MultipleButtonsFragment extends TimerFragment implements
         TimerButtonVertical.TimerButtonCommunicator {
     private static final int[] BUTTON_IDS = { R.id.button1, R.id.button2, R.id.button3, R.id.button4,
         R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9 };
-    private static final int PADDING = 10;
+    private static final int PADDING = 15;
 
     ArrayList<TimerButtonVertical> buttons = new ArrayList<TimerButtonVertical>();
 

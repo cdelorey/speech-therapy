@@ -73,6 +73,7 @@ public class MainActivity extends ActionBarActivity implements TabListener,
         actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setBackgroundDrawable(null); // testing
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(3);
