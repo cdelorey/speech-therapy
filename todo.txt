@@ -103,4 +103,5 @@
 
 
 * remove logging statements
+* remove unused resources from holoCircularProgressBar
 * put something in help screen and maybe about screen
