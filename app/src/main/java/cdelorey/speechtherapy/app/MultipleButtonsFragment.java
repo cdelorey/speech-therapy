@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -45,7 +46,7 @@ public class MultipleButtonsFragment extends TimerFragment implements
                     } else {
                         rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
-                    setButtonSize();
+                    setupButtons();
                 }
             });
         }
@@ -107,25 +108,49 @@ public class MultipleButtonsFragment extends TimerFragment implements
         }
     }
 
-    private int calculateButtonSize() {
-        LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.table);
-        int width = layout.getMeasuredWidth();
-        int height = layout.getMeasuredHeight();
+    private void setupButtons() {
+        LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.button_grid);
+        int viewWidth = layout.getMeasuredWidth();
+        int viewHeight = layout.getMeasuredHeight();
+        int buttonSize;
+        int buttonViewPadding;
 
-        if(width < height) {
-            return (width - (PADDING * 4)) / 3;
+        // calculate sizes so buttons are arranged in a grid that is centered in the view
+        if(viewWidth < viewHeight) {
+            // portrait layout
+            buttonSize = (viewWidth - (PADDING * 4)) / 3;
+            buttonViewPadding = ((viewHeight - (buttonSize * 3 + PADDING * 2))) / 2;
         } else {
-            return(height - (PADDING * 4)) / 3;
+            // landscape layout
+            buttonSize = (viewHeight - (PADDING * 4)) / 3;
+            buttonViewPadding = ((viewWidth - (buttonSize * 3 + PADDING * 2))) / 2;
         }
+
+        setButtonSize(buttonSize);
+        setButtonViewPadding(buttonViewPadding, viewWidth < viewHeight);
     }
 
-    private void setButtonSize() {
-        int size = calculateButtonSize();
-
+    private void setButtonSize(int buttonSize) {
         for(TimerButtonVertical button : buttons) {
-            button.getLayoutParams().height = size;
-            button.getLayoutParams().width = size;
+            button.getLayoutParams().height = buttonSize;
+            button.getLayoutParams().width = buttonSize;
             button.setPadding(PADDING, PADDING, PADDING, PADDING);
         }
     }
+
+    private void setButtonViewPadding(int buttonViewPadding, boolean isPortrait) {
+        if(isPortrait) {
+            LinearLayout top_row = (LinearLayout) getActivity().findViewById(R.id.top_row);
+            top_row.setPadding(0, buttonViewPadding, 0 , 0);
+        } else {
+            LinearLayout top_row = (LinearLayout) getActivity().findViewById(R.id.top_row);
+            LinearLayout middle_row = (LinearLayout) getActivity().findViewById(R.id.middle_row);
+            LinearLayout bottom_row = (LinearLayout) getActivity().findViewById(R.id.bottom_row);
+            top_row.setPadding(buttonViewPadding, 0, 0, 0);
+            middle_row.setPadding(buttonViewPadding, 0, 0, 0);
+            bottom_row.setPadding(buttonViewPadding, 0, 0, 0);
+        }
+    }
+
+
 }

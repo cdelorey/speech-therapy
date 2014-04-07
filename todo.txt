@@ -83,8 +83,13 @@
 04/06/14
 --------
 *DONE* switch from tabs to dots
-* center buttons in portrait multipleButtons layout
-* center buttons in landscape multipleButtons layout
+
+04/07/14
+--------
+*DONE* center buttons in portrait multipleButtons layout
+*DONE* center buttons in landscape multipleButtons layout
+
+* make single button size relative to screen size
 * make button border relative to screen size somehow
 * make buttons look like buttons
 * make dots look better

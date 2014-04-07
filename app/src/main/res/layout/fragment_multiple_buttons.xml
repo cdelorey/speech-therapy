@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/table"
+    android:id="@+id/button_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -7,10 +7,10 @@
     >
         <!-- set linerLayout's weight to 1 to spread buttons equally vertically -->
         <LinearLayout
+            android:id="@+id/top_row"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="100dp">
+            android:orientation="horizontal">
 
             <cdelorey.speechtherapy.app.TimerButtonVertical
                 android:id="@+id/button1"
@@ -32,6 +32,7 @@
         </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/middle_row"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal">
@@ -56,6 +57,7 @@
         </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bottom_row"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal">
